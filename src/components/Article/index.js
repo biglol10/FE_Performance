@@ -36,13 +36,20 @@ function removeSpecialCharacter(str) {
   return _str
 }
 
+function removeSpecialCharacter2(str){
+  let _str = str.substring(0, 300);
+  _str = _str.replace(/[\#\_\*\~\&\;\~\[\]\`\n\=\-]/g, '');
+
+  return _str;
+}
+
 function Article(props) {
   const createdTime = new Date(props.createdTime)
   return (
     <div className={'Article'}>
       <div className={'Article__summary'}>
         <div className={'Article__summary__title'}>{props.title}</div>
-        <div className={'Article__summary__desc'}>{removeSpecialCharacter(props.content)}</div>
+        <div className={'Article__summary__desc'}>{removeSpecialCharacter2(props.content)}</div>
         <div className={'Article__summary__etc'}>
           {createdTime.getFullYear() +
             '.' +
@@ -52,7 +59,7 @@ function Article(props) {
         </div>
       </div>
       <div className={'Article__thumbnail'}>
-        <img src={props.image + getParametersForUnsplash({width: 1200, height: 1200, quality: 80, format: 'jpg'})} alt="thumbnail" />
+        <img src={props.image + getParametersForUnsplash({width: 240, height: 240, quality: 80, format: 'jpg'})} alt="thumbnail" />
       </div>
     </div>
   )
